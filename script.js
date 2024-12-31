@@ -1,39 +1,17 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    text-align: center;
-}
+// 動画リストの各アイテムを取得
+const videoListItems = document.querySelectorAll("#video-list li");
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-}
+// メイン動画プレイヤーを取得
+const mainVideo = document.getElementById("main-video");
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
-#video-player {
-    margin-top: 20px;
-}
-
-video {
-    width: 80%;
-    max-width: 800px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    background-color: black;
-}
-
-footer {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-}
+// 動画リストのクリックイベントを設定
+videoListItems.forEach(item => {
+    item.addEventListener("click", () => {
+        // data-video属性から動画ファイルのパスを取得
+        const videoSrc = item.getAttribute("data-video");
+        // メイン動画プレイヤーのソースを設定
+        mainVideo.src = videoSrc;
+        // 動画を再生
+        mainVideo.play();
+    });
+});
